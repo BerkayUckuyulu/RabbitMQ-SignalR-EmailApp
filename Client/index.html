@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./node_modules/@microsoft/signalr/dist/browser/signalr.min.js"></script>
+    <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+
+    <script>
+        $(document).ready(() => {
+
+            var connection = new signalR.HubConnectionBuilder().withUrl("https://localhost:7008/messageHub").build();
+
+            connection.start();
+
+            connection.on("receiveMessage", (message) => {
+                alert(message);
+
+            })
+
+
+
+            $("#button").click(() => {
+                let mail = $("#txtMail").val();
+                let message = $("#txtMessage").val();
+                $.post("https://localhost:7008/message", {
+                    Email: mail,
+                    message: message
+                }, (result) => {
+                    console.log(result);
+
+                });
+            })
+        })
+    </script>
+
+</head>
+
+<body>
+
+    <div class="row mt-5">
+        <div class="col-md-6 offset-3">
+            <div class="input-group  mb-3">
+                <span class="input-group-text" id="inputGroup-sizing-default">Message</span>
+                <input id="txtMessage" type="text" class="form-control" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-sm">
+            </div>
+
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="inputGroup-sizing-default">E-Mail</span>
+                <input id="txtMail" type="text" class="form-control" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-default">
+            </div>
+            <div class="text-end">
+                <button id="button" class="btn btn-success">Send</button>
+
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>

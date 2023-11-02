@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "icJq1vWR2y+H3DRiCbJI7Q3JbkN5o19FRavhuoFhHdE=",
+  "Source": "RabbitMQ-SignalR-SendEmailApp",
+  "BasePath": "_content/RabbitMQ-SignalR-SendEmailApp",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
